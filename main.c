@@ -67,6 +67,9 @@ int main() {
             case 3:
                 printf("Voce vai  Consultar a Conta  ");
                 break;
+            case 10:
+                printf("Voce vai criar um Novo Cliente ");
+                break;
             default:
                 printf("Introduza uma operacao valida!");
 
