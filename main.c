@@ -44,7 +44,8 @@ int main() {
         printf("\t6. Transferir dinheiro\n");
         printf("\t7. Editar conta\n");
         printf("\t8. Eliminar conta\n");
-        printf("\t9. Gravar listagem de conta em ficheiro\n\n");
+        printf("\t9. Gravar listagem de conta em ficheiro\n");
+        printf("\t10. Criar Novo Cliente\n\n");
         // outras opçoes
         printf("\t0. Sair\n");
         printf("\t<Digite opcao>:");
@@ -62,6 +63,9 @@ int main() {
                 break;
             case 2:
                 printf("voce quer listar contas");
+                break;
+            case 3:
+                printf("Voce vai  Consultar a Conta  ");
                 break;
             default:
                 printf("Introduza uma operacao valida!");
