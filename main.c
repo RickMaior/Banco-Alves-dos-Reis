@@ -10,7 +10,8 @@
 #include <stdio.h>
 
 int request_number(){
-    // Request the user a number, and only leaves when a valid number is inserted
+    // Request the user a number, and only leaves when a valid number is inserted7
+    // bom diacomo estas 
     int user_number;
     int scan_return;
    
