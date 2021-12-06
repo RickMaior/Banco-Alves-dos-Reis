@@ -60,6 +60,9 @@ int main() {
             case 10:
                 printf("Voce vai criar um Novo Cliente ");
                 break;
+            case 99: // remove at end DEVELOPMENT ONLY
+                
+                break;
             default:
                 printf("Introduza uma operacao valida!");
 
@@ -72,8 +75,8 @@ int main() {
 //Functions code:
 
 int request_integer(){
-    // Request the user a integer number, and only leaves when a valid number is inserted7
-    // bom diacomo estas 
+    // Request the user a integer number, and only leaves when a valid number is inserted
+  
     int user_number;
     int scan_return;
    
@@ -92,8 +95,8 @@ int request_integer(){
 }
 
 float request_float(){
-    // Request the user a  float number, and only leaves when a valid number is inserted7
-    // bom diacomo estas 
+    // Request the user a  float number, and only leaves when a valid number is inserted
+    
     float user_number;
     int scan_return;
    
