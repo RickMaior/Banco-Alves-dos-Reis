@@ -13,8 +13,10 @@
 
 //Funtions:
 
-int request_integer(); //gets an integer from user
-float request_float(); //gets a float from user
+int request_integer( void ); //gets an integer from user
+long request_long( void ); //gets an even bigger integer from user
+float request_float( void ); //gets a float from user
+int verify_nif(long number_to_verify); // verify if a number is a valid nif
 
 
 //Main code:
@@ -61,7 +63,12 @@ int main() {
                 printf("Voce vai criar um Novo Cliente ");
                 break;
             case 99: // remove at end DEVELOPMENT ONLY
-                
+                printf("Introduza um numero para testar: ");
+                long nif_teste = request_long();
+                printf("Numero a testar: %li\n", nif_teste);
+                int resultado = verify_nif(nif_teste);
+                printf("o restultado e: %d\n", resultado);
+                verify_nif(nif_teste);
                 break;
             default:
                 printf("Introduza uma operacao valida!");
@@ -74,7 +81,7 @@ int main() {
 
 //Functions code:
 
-int request_integer(){
+int request_integer( void ){
     // Request the user a integer number, and only leaves when a valid number is inserted
   
     int user_number;
@@ -94,7 +101,27 @@ int request_integer(){
     return user_number;
 }
 
-float request_float(){
+long request_long( void ){
+    // Request the user an even bigger integer number, and only leaves when a valid number is inserted
+  
+    long user_number;
+    int scan_return;
+   
+    do{
+        scan_return = scanf("%li",&user_number);
+        fflush(stdin);
+        if(!scan_return){
+            // in case user doesnt put a valid number!
+            printf("\033[0;31m"); //Set the text to the color red
+            printf(" Por favor introduza um numero valido ! "); //Prints error  in red
+            printf("\033[0m"); // resets color
+        }
+    }while(!scan_return);
+
+    return user_number;
+}
+
+float request_float( void ){
     // Request the user a  float number, and only leaves when a valid number is inserted
     
     float user_number;
@@ -112,4 +139,30 @@ float request_float(){
     }while(!scan_return);
 
     return user_number;
+}
+
+int verify_nif( long number_to_verify){ // verify if a number is a valid nif | 0 if false and 1 if true
+    //TODO: fix double printf
+    if(number_to_verify <= 0) {
+        printf("Numero negativo nao valido!\n");
+        return 0;
+    }
+    int number_parts[9];
+    int counter;
+    for(counter=0; number_to_verify > 0 ; counter++){
+        if(counter > 9) {
+            printf("Numero demasiado grande!\n");
+            return 0;
+        }
+        
+        number_parts[counter]=number_to_verify%10;
+        number_to_verify = number_to_verify/10;
+    }
+    if (counter < 9){
+        printf("Numero demasiado pequeno!\n");
+        return 0;
+    }
+    
+
+    return 2;
 }
