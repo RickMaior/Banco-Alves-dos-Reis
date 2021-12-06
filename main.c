@@ -8,26 +8,16 @@
 
 // Teste de update
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-int request_number(){
-    // Request the user a number, and only leaves when a valid number is inserted7
-    // bom diacomo estas 
-    int user_number;
-    int scan_return;
-   
-    do{
-        scan_return = scanf("%d",&user_number);
-        fflush(stdin);
-        if(!scan_return){
-            // in case user doesnt put a valid number!
-            printf("\033[0;31m"); //Set the text to the color red
-            printf(" Por favor introduza um numero valido ! "); //Prints error  in red
-            printf("\033[0m"); // resets color
-        }
-    }while(!scan_return);
+//Funtions:
 
-    return user_number;
-}
+int request_integer(); //gets an integer from user
+float request_float(); //gets a float from user
+
+
+//Main code:
 
 int main() {
 	//https://www.guru99.com/c-file-input-output.html
@@ -50,7 +40,7 @@ int main() {
         printf("\t0. Sair\n");
         printf("\t<Digite opcao>:");
 
-        opcao = request_number();
+        opcao = request_integer();
 
         printf("\n\tVoce escolheu %d\n", opcao);
 
@@ -77,4 +67,46 @@ int main() {
 
     } while (opcao != 0);
     return 0;
+}
+
+//Functions code:
+
+int request_integer(){
+    // Request the user a integer number, and only leaves when a valid number is inserted7
+    // bom diacomo estas 
+    int user_number;
+    int scan_return;
+   
+    do{
+        scan_return = scanf("%d",&user_number);
+        fflush(stdin);
+        if(!scan_return){
+            // in case user doesnt put a valid number!
+            printf("\033[0;31m"); //Set the text to the color red
+            printf(" Por favor introduza um numero valido ! "); //Prints error  in red
+            printf("\033[0m"); // resets color
+        }
+    }while(!scan_return);
+
+    return user_number;
+}
+
+float request_float(){
+    // Request the user a  float number, and only leaves when a valid number is inserted7
+    // bom diacomo estas 
+    float user_number;
+    int scan_return;
+   
+    do{
+        scan_return = scanf("%f",&user_number);
+        fflush(stdin);
+        if(!scan_return){
+            // in case user doesnt put a valid number!
+            printf("\033[0;31m"); //Set the text to the color red
+            printf(" Por favor introduza um numero valido ! "); //Prints error  in red
+            printf("\033[0m"); // resets color
+        }
+    }while(!scan_return);
+
+    return user_number;
 }
