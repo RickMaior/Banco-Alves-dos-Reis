@@ -68,7 +68,6 @@ int main() {
                 printf("Numero a testar: %li\n", nif_teste);
                 int resultado = verify_nif(nif_teste);
                 printf("o restultado e: %d\n", resultado);
-                verify_nif(nif_teste);
                 break;
             default:
                 printf("Introduza uma operacao valida!");
@@ -164,5 +163,5 @@ int verify_nif( long number_to_verify){ // verify if a number is a valid nif | 0
     }
     
 
-    return 2;
+    return 1;
 }
