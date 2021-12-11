@@ -63,7 +63,7 @@ int main() {
                 printf("Voce vai criar um Novo Cliente ");
                 break;
             case 99: // remove at end DEVELOPMENT ONLY
-                printf("Introduza um numero para testar: ");
+                printf("Introduza um numero para testar se nif valido: ");
                 long nif_teste = request_long();
                 printf("Numero a testar: %li\n", nif_teste);
                 int resultado = verify_nif(nif_teste);
@@ -141,26 +141,31 @@ float request_float( void ){
 }
 
 int verify_nif( long number_to_verify){ // verify if a number is a valid nif | 0 if false and 1 if true
-    //TODO: fix double printf
+    
     if(number_to_verify <= 0) {
         printf("Numero negativo nao valido!\n");
         return 0;
     }
     int number_parts[9];
     int counter;
-    for(counter=0; number_to_verify > 0 ; counter++){
-        if(counter > 9) {
-            printf("Numero demasiado grande!\n");
+    for(counter=0; number_to_verify > 0 ; counter++){ 
+        if(counter == 9) { // if counter reaches 9 inside for, it means it has more than 9 digits
+            printf("Numero demasiado grande!\n"); // debug only
             return 0;
         }
         
-        number_parts[counter]=number_to_verify%10;
-        number_to_verify = number_to_verify/10;
+ 
+        number_parts[8 - counter]=number_to_verify%10; // gets the last digit
+        number_to_verify = number_to_verify/10;  // removes the last digit
     }
-    if (counter < 9){
-        printf("Numero demasiado pequeno!\n");
+
+    printf("\nnumber_to_verify = %li\n", number_to_verify); //debug only
+    printf("counter= %d\n", counter); // debug  only
+    if (counter < 9){ // if counter is less than 9, than it means that number doesnt have 9 digits
+        printf("Numero demasiado pequeno!\n"); // debug only
         return 0;
     }
+
     
 
     return 1;
