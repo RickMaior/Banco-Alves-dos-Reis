@@ -1,3 +1,12 @@
+/*  @name: Read.c
+    @description:
+        This file includes the functions that allow to read data from user (Int, float and long)
+
+    @author: Ricardo Matos
+    @version: 1.0
+    @date: 00/00/2021
+*/
+
 #include "read.h"
 #include <stdio.h>
 
