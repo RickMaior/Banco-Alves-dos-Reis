@@ -10,15 +10,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include "account.h"
+#include "client.h"
 
-Account new_client(){ // Creates a new client with the parameters as data (where nif was already validated)
-    // Account account;
-    // strcpy(account.nome, name);
-    // account.nif = nif;
-    // return account;
+Account new_account(int id ,char account_type, int balance){ // Creates a new client with the parameters as data (where nif was already validated)
+    Account account;
+    account.id = id;
+    account.account_type = account_type;
+    account.balance = balance;
+    return account;
 }
 
-void print_client(Account account){
+void print_account(Account account){
     //printf("Nome = %s\nNif=%ld", client.nome, client.nif);
 }
 
