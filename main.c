@@ -6,7 +6,7 @@
     @date: 08/11/2021
 */
 
-// Teste de update
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -49,9 +49,9 @@ int main() {
             case 10:
                 printf("Voce vai criar um Novo Cliente ");
                 break;
-            case 98:
+            case 98: //TODO remove at end DEVELOPMENT ONLY
                 break;
-            case 99: // remove at end DEVELOPMENT ONLY
+            case 99: //TODO remove at end DEVELOPMENT ONLY
                 printf("Introduza um numero para testar se nif valido: ");
                 long nif_teste = request_long();
                 printf("Numero a testar: %li\n", nif_teste);

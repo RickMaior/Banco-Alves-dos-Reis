@@ -37,7 +37,7 @@ int verify_nif( long number_to_verify){ // verify if a number is a valid nif | 0
     if (counter ==9) return 1;
     return 0;
     
-    //FEITO antes do stor falar
+    //FEITO FEITO de forma completa, mas desnecessário
     // // get the ammount of digit number has
     // if(number_to_verify <= 0) {
     //     //printf("Numero negativo nao valido!\n");

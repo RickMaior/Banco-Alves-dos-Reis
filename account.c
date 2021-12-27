@@ -15,8 +15,8 @@
 Account new_account(int id ,char account_type, int balance){ // Creates a new client with the parameters as data (where nif was already validated)
     Account account;
     account.id = id;
-    account.account_type = account_type;
-    account.balance = balance;
+    account.account_type = account_type; // N - normal, I - Insenta, D - Desativada
+    account.balance = balance; // Inicial > 150
     return account;
 }
 
