@@ -8,8 +8,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include <string.h>
 #include "client.h"
+
 
 Client new_client(char *name,long nif){ // Creates a new client with the parameters as data (where nif was already validated)
     Client client;
@@ -35,6 +37,7 @@ int verify_nif( long number_to_verify){ // verify if a number is a valid nif | 0
         counter++;
     }
     if (counter ==9) return 1;
+
     return 0;
     
     //FEITO FEITO de forma completa, mas desnecessário
@@ -72,3 +75,24 @@ int verify_nif( long number_to_verify){ // verify if a number is a valid nif | 0
 
     //return 0;
 }
+
+
+int verify_name(char *name)
+{
+    for (int i = 0; *(name + i) != '\0'; i++)
+    {
+        // printf("i= %d\n", i);
+        // printf("name+i= %c \n", *(name + i));
+
+        if (!isalpha(*(name + i)) && *(name + i) != ' ')
+        {
+            // printf("Nao e uma Caracter Valido \n\n");
+
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+

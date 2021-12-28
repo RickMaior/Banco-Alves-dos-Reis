@@ -12,4 +12,6 @@ void print_client(Client client);
 
 int verify_nif( long number_to_verify);
 
+int verify_name(char *name);
+
 #endif
