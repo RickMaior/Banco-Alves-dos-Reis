@@ -50,6 +50,11 @@ int main() {
                 printf("Voce vai criar um Novo Cliente ");
                 break;
             case 98: //TODO remove at end DEVELOPMENT ONLY
+                printf("QUal o teu nome? ");
+                char nome[20];
+                gets(nome);
+                if(verify_name(nome))printf("Nome valido!\n");
+                else printf("Nome invalido!\n");
                 break;
             case 99: //TODO remove at end DEVELOPMENT ONLY
                 printf("Introduza um numero para testar se nif valido: ");

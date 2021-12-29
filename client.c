@@ -77,17 +77,16 @@ int verify_nif( long number_to_verify){ // verify if a number is a valid nif | 0
 }
 
 
-int verify_name(char *name)
-{
-    for (int i = 0; *(name + i) != '\0'; i++)
-    {
+int verify_name(char *name){
+
+    if(name[0] == '\0') return 0; // if name is empty is not valid
+
+    for (int i = 0; name[i] != '\0'; i++){ // only leaves loop if name has all chars letters or space
         // printf("i= %d\n", i);
         // printf("name+i= %c \n", *(name + i));
 
-        if (!isalpha(*(name + i)) && *(name + i) != ' ')
-        {
+        if (!isalpha(name[i]) && name[i] != ' '){
             // printf("Nao e uma Caracter Valido \n\n");
-
             return 0;
         }
     }
