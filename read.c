@@ -2,7 +2,7 @@
     @description:
         This file includes the functions that allow to read data from user (Int, float and long)
 
-    @author: Ricardo Matos
+    @author: Ricardo Matos & Tiago Rosa
     @version: 1.0
     @date: 00/00/2021
 */
