@@ -25,8 +25,7 @@ void print_menu();
 //Main code:
 
 int main() {
-    Bank bank ;
-    bank = get_bank();
+    Bank bank = get_bank();
 	
     int opcao = 0;
     do {
