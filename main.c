@@ -12,6 +12,7 @@
 #include <string.h>
 #include "read.h"
 #include "client.h"
+#include "bank.h"
 
 
 //Funtions:
@@ -48,6 +49,9 @@ int main() {
                 break;
             case 10:
                 printf("Voce vai criar um Novo Cliente ");
+                break;
+            case 97: //TODO remove at end DEVELOPMENT ONLY
+                test_bank();
                 break;
             case 98: //TODO remove at end DEVELOPMENT ONLY
                 printf("QUal o teu nome? ");

@@ -8,6 +8,7 @@ typedef struct{
     int balance; // account ballance in cents
     char history[3]; // TODO historico da conta
     int creation_date; // data de criação da conta
+    // TODO opening date of account
     
 } Account;
 
