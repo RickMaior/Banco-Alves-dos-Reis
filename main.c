@@ -6,6 +6,8 @@
     @date: 08/11/2021
 */
 
+    //! https://www.guru99.com/c-file-input-output.html
+	//!  necessario variavel para guardar dados do banco
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,8 +25,9 @@ void print_menu();
 //Main code:
 
 int main() {
-	//https://www.guru99.com/c-file-input-output.html
-	// necessario variavel para guardar dados do banco
+    Bank bank ;
+    bank = get_bank();
+	
     int opcao = 0;
     do {
         opcao = 0;
@@ -36,6 +39,7 @@ int main() {
 
         switch(opcao){
             case 0:
+                update_file(bank);
                 printf("Saindo da app");
                 break;
             case 1:
@@ -50,15 +54,11 @@ int main() {
             case 10:
                 printf("Voce vai criar um Novo Cliente ");
                 break;
-            case 97: //TODO remove at end DEVELOPMENT ONLY
-                test_bank();
+            case 96: //TODO remove at end DEVELOPMENT ONLY
+                bank.active_accounts++;
                 break;
-            case 98: //TODO remove at end DEVELOPMENT ONLY
-                printf("QUal o teu nome? ");
-                char nome[20];
-                gets(nome);
-                if(verify_name(nome))printf("Nome valido!\n");
-                else printf("Nome invalido!\n");
+            case 97: //TODO remove at end DEVELOPMENT ONLY
+                printf("O numero de contas do banco e: %d\n", bank.active_accounts); 
                 break;
             case 99: //TODO remove at end DEVELOPMENT ONLY
                 printf("Introduza um numero para testar se nif valido: ");

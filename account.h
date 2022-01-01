@@ -1,9 +1,11 @@
 #ifndef ACCOUNT_H_INCLUDED
 #define ACCOUNT_H_INCLUDED
 
+#include "client.h"
+
 typedef struct{
     int id;
-    char owner[5]; // TODO array de clients
+    Client owner[5];
     char account_type; // N -> normal, I -> insent
     int balance; // account ballance in cents
     char history[3]; // TODO historico da conta
