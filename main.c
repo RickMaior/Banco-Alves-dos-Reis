@@ -6,29 +6,27 @@
     @date: 08/11/2021
 */
 
-    //! https://www.guru99.com/c-file-input-output.html
-	//!  necessario variavel para guardar dados do banco
+//! https://www.guru99.com/c-file-input-output.html
+//!  necessario variavel para guardar dados do banco
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "read.h"
-#include "client.h"
+
 #include "bank.h"
 
-
-//Funtions:
+// Funtions:
 
 void print_menu();
 
+// Main code:
 
-//Main code:
-
-int main() {
+int main(){
     Bank bank = get_bank();
-	
+
     int opcao = 0;
-    do {
+    do{
         opcao = 0;
         print_menu();
 
@@ -36,39 +34,48 @@ int main() {
 
         printf("\n\tVoce escolheu %d\n", opcao);
 
-        switch(opcao){
-            case 0:
-                update_file(bank);
-                printf("Saindo da app");
-                break;
-            case 1:
-                printf("voce vai abrir conta");
-                break;
-            case 2:
-                printf("voce quer listar contas");
-                break;
-            case 3:
-                printf("Voce vai  Consultar a Conta  ");
-                break;
-            case 10:
-                printf("Voce vai criar um Novo Cliente ");
-                break;
-            case 96: //TODO remove at end DEVELOPMENT ONLY
-                bank.active_accounts++;
-                break;
-            case 97: //TODO remove at end DEVELOPMENT ONLY
-                printf("O numero de contas do banco e: %d\n", bank.active_accounts); 
-                break;
-            case 99: //TODO remove at end DEVELOPMENT ONLY
-                printf("Introduza um numero para testar se nif valido: ");
-                long nif_teste = request_long();
-                printf("Numero a testar: %li\n", nif_teste);
-                int resultado = verify_nif(nif_teste);
-                printf("o restultado e: %d\n", resultado);
-                break;
-            default:
-                printf("Introduza uma operacao valida!");
+        switch (opcao){
+        case 0:
+            update_file(bank);
+            printf(" A Sair da app");
+            break;
+        case 1:
+            new_account(&bank);
+            break;
+        case 2:
+            printf("Voce quer listar contas");
+            break;
+        case 3:
+            printf("Voce vai  Consultar a Conta");
+            break;
+        case 4:
+            printf("Voce vai Depositar dinheiro");
+            break;
+        case 5:
+            printf("Voce vai depositar Depositar dinheiro");
+            break;
+        case 6:
+            printf("Voce vai Transferir dinheiro");
+            break;
+        //! fazer ate aqui na primeira parte
+        case 7:
+            printf("Voce vai Editar conta");
+            break;
+        case 8:
+            printf("Voce vai Eliminar conta");
+            break;
+        case 9:
+            printf("Voce vai Gravar listagem de conta em ficheiro");
+            break;
 
+        case 98: // TODO remove at end DEVELOPMENT ONLY
+            printf("bank accounts = %d\n", bank.active_accounts);
+            break;
+        case 99: // TODO remove at end DEVELOPMENT ONLY
+            print_account(bank.accounts[0]);
+            break;
+        default:
+            printf("Introduza uma operacao valida!");
         }
 
     } while (opcao != 0);
@@ -76,12 +83,10 @@ int main() {
     return 0;
 }
 
-//Functions code:
-
-
+// Functions code:
 
 void print_menu(){
- 
+
     printf("\n\n\t+++ OPERACAO PRETENDIDA +++\n");
     printf("\t1. Abrir conta\n");
     printf("\t2. Listar contas\n");
@@ -92,10 +97,7 @@ void print_menu(){
     printf("\t7. Editar conta\n");
     printf("\t8. Eliminar conta\n");
     printf("\t9. Gravar listagem de conta em ficheiro\n");
-    printf("\t10. Criar Novo Cliente\n\n");
     // outras opçoes
     printf("\t0. Sair\n");
     printf("\t<Digite opcao>:");
-
-    
 }
