@@ -12,16 +12,16 @@
 #include <string.h>
 #include "client.h"
 
-
-Client new_client(char *name,long nif){ // Creates a new client with the parameters as data (where nif was already validated)
-    Client client;
-    strcpy(client.name, name);
-    client.nif = nif;
-    return client;
-}
+// //! TODO check if USELES 
+// Client new_client(char *name,long nif){ // Creates a new client with the parameters as data (where nif was already validated)
+//     Client client;
+//     strcpy(client.name, name);
+//     client.nif = nif;
+//     return client;
+// }
 
 void print_client(Client client){   
-    printf("name = %s\nNif=%ld", client.name, client.nif);
+    printf("name = %s\nNif=%ld\n", client.name, client.nif);
 }
 
 

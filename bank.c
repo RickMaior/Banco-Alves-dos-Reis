@@ -27,7 +27,7 @@ void print_account(Account account){
 }
 
 void new_account(Bank *bank){ // Creates a new client with the parameters as data (where nif was already validated)
-    int new_id = (*bank).active_accounts +1;
+    int new_id = (*bank).active_accounts ;
 
     // int id;
     // Client owner[5];
@@ -40,9 +40,12 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     (*bank).accounts[new_id].id = new_id;
 
     //TODO for all owners
-    printf("Qual o seu nif?\n");
+    
     printf("Qual o seu nome?\n");
-    (*bank).accounts[new_id].owner[0] = new_client("Bom dia",123456789); //TODO ASK user name and NIF
+    strcpy((*bank).accounts[new_id].owner[0].name, "Bom dia");
+    printf("Qual o seu nif?\n");
+    (*bank).accounts[new_id].owner[0].nif = 123456789;
+    
 
     //TODO ask user account type
     printf("Qual o tipo de conta pretendida?\n");
@@ -51,7 +54,7 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     do{
         //TODO ask user account new balance
         printf("Qual o valor pretendido para abrir a conta?\n");
-        (*bank).accounts[new_id].balance = 15000;
+        (*bank).accounts[new_id].balance = 15000;// TODO ask user the value
         if((*bank).accounts[new_id].balance < 15000) printf("Valor insuficiente para abrir conta!\n");
     }while((*bank).accounts[new_id].balance < 15000);
 
