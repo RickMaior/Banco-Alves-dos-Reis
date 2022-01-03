@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "read.h"
 #include "client.h"
 #include "bank.h"
 
@@ -16,17 +17,8 @@
 // ACCOUNT
 
 
-void print_account(Account account){
-    
-    printf("ID: %d\n", account.id);
-    print_client(account.owner[0]); //TODO for all owners
-    printf("Balance: %d\n", account.balance);
-    printf("history: %c\n", account.history[0]); // TODO for all history
-    printf("creation: %d\n", account.creation_date);
- 
-}
 
-void new_account(Bank *bank){ // Creates a new client with the parameters as data (where nif was already validated)
+void new_account(Bank *bank){ // Creates a new client with the parameters as data (where nif was already validated) //! TODO THINGS TO FINISH
     int new_id = (*bank).active_accounts ;
 
     // int id;
@@ -37,14 +29,23 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     // int creation_date; // data de criação da conta
 
 
-    (*bank).accounts[new_id].id = new_id;
+    (*bank).accounts[new_id].id = new_id + 1;
 
     //TODO for all owners
+    long user_nif;
+    do{
+        printf("Qual o seu nif?\n");
+        user_nif = request_long();
+        if(!verify_nif(user_nif))printf("Introduza um nif valido! \n");
+    }while(!verify_nif(user_nif));
     
+                                                                                                                                                                                 
+    (*bank).accounts[new_id].owner[0].nif = user_nif;
+
+    //TODO check if nif already exists
     printf("Qual o seu nome?\n");
     strcpy((*bank).accounts[new_id].owner[0].name, "Bom dia");
-    printf("Qual o seu nif?\n");
-    (*bank).accounts[new_id].owner[0].nif = 123456789;
+   
     
 
     //TODO ask user account type
@@ -68,7 +69,31 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     
 
     // Saving the new account
+    printf("Conta criada com sucesso com ID: %d\n", (*bank).accounts[new_id].id);
+    (*bank).funds += (*bank).accounts[new_id].balance;
     (*bank).active_accounts++;
+}
+
+void print_account(Account account){ //! TODO THINGS TO FINISH
+    
+    printf("ID: %d\n", account.id);
+    print_client(account.owner[0]); //TODO for all owners
+    printf("Balance: %d\n", account.balance);
+    printf("history: %c\n", account.history[0]); // TODO for all history
+    printf("creation: %d\n", account.creation_date);
+ 
+}
+
+void check_account(Bank bank){
+    int account_check = -1;
+    
+    do{
+        printf("Qual conta quer consultar? ");
+        account_check = request_integer();
+        if(account_check <= 0 || account_check > bank.active_accounts) printf("Introduza um ID valido! \n");
+    }while(account_check <= 0 || account_check > bank.active_accounts);
+    printf("\n");
+    print_account(bank.accounts[account_check -1]);
 }
 
 // BANK

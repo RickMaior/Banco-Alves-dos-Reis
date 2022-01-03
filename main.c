@@ -42,29 +42,29 @@ int main(){
         case 1:
             new_account(&bank);
             break;
-        case 2:
+        case 2: //! TODO THINGS TO FINISH
             printf("Voce quer listar contas");
             break;
         case 3:
-            printf("Voce vai  Consultar a Conta");
+            check_account(bank);
             break;
-        case 4:
+        case 4: //! TODO THINGS TO FINISH
             printf("Voce vai Depositar dinheiro");
             break;
-        case 5:
-            printf("Voce vai depositar Depositar dinheiro");
+        case 5: //! TODO THINGS TO FINISH
+            printf("Voce vai Levantar dinheiro");
             break;
-        case 6:
+        case 6: //! TODO THINGS TO FINISH
             printf("Voce vai Transferir dinheiro");
             break;
-        //! fazer ate aqui na primeira parte
-        case 7:
+        //TODO fazer ate aqui na primeira parte
+        case 7: //! TODO THINGS TO FINISH
             printf("Voce vai Editar conta");
             break;
-        case 8:
+        case 8: //! TODO THINGS TO FINISH
             printf("Voce vai Eliminar conta");
             break;
-        case 9:
+        case 9: //! TODO THINGS TO FINISH
             printf("Voce vai Gravar listagem de conta em ficheiro");
             break;
 

@@ -23,9 +23,11 @@ typedef struct{
 
 // ACCOUNT functions
 
+void new_account(Bank *bank); 
+
 void print_account(Account account);
 
-void new_account(Bank *bank); // TODO create this function
+void check_account(Bank bank);
 
 // BANK functions
 Bank get_bank();
