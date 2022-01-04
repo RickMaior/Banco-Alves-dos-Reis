@@ -13,7 +13,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "read.h"
-
 #include "bank.h"
 
 // Funtions:
@@ -24,6 +23,7 @@ void print_menu();
 
 int main(){
     Bank bank = get_bank();
+  
 
     int opcao = 0;
     do{
@@ -45,7 +45,7 @@ int main(){
         case 2: //! TODO THINGS TO FINISH
             printf("Voce quer listar contas");
             break;
-        case 3:
+        case 3: //TODO user gets locked if there are no accounts
             check_account(bank);
             break;
         case 4: //! TODO THINGS TO FINISH
