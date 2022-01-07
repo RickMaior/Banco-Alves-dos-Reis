@@ -36,7 +36,7 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     //TODO for all owners
     long user_nif;
     do{
-        printf("Qual o seu nif?\n");
+        printf("Qual o seu nif?\n\t");
         user_nif = request_long();
         if(!verify_nif(user_nif))printf("Introduza um nif valido! \n");
     }while(!verify_nif(user_nif));
@@ -45,8 +45,8 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     (*bank).accounts[new_id].owner[0].nif = user_nif;
 
     //TODO check if nif already exists
-    printf("Qual o seu nome?\n");
-    strcpy((*bank).accounts[new_id].owner[0].name, "Bom dia");
+    get_name_from_nif( bank, &(*bank).accounts[new_id].owner[0] ); // Gets the name for the user
+    //strcpy((*bank).accounts[new_id].owner[0].name, "Bom dia");
    
     
 
@@ -96,6 +96,29 @@ void check_account(Bank bank){
     }while(account_check <= 0 || account_check > bank.active_accounts);
     printf("\n");
     print_account(bank.accounts[account_check -1]);
+}
+
+void get_name_from_nif(Bank *bank, Client *client){
+
+    int account_number = 0;
+    while(account_number < (*bank).active_accounts){
+        int owner_number = 0;
+        while( owner_number < 5 ){ //TODO fix the counting
+            if( (*client).nif == (*bank).accounts[account_number].owner[owner_number].nif ) {
+               // printf("\nEste Nif ja existe com o nome: %s\n", (*bank).accounts[account_number].owner[owner_number].name);
+                strcpy((*client).name, (*bank).accounts[account_number].owner[owner_number].name ); // copies the first name found with that nif to thew client
+                return;
+            }
+            
+            owner_number++;
+        }
+        account_number++;
+    }
+
+    printf("Qual o seu nome?\n\t");
+    char name[51];
+    gets(name);
+    strcpy((*client).name, name);
 }
 
 // BANK
