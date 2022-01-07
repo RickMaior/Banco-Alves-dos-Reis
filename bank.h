@@ -8,6 +8,7 @@
 typedef struct{
     int id;
     Client owner[5];
+    int total_owners;
     char account_type; // N -> normal, I -> insent
     int balance; // account ballance in cents
     char history[3]; // TODO historico da conta
