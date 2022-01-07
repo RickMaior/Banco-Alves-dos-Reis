@@ -22,12 +22,12 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     
     int new_id = (*bank).active_accounts ;
 
-    // int id;
-    // Client owner[5];
-    // char account_type; // N -> normal, I -> insent
-    // int balance; // account ballance in cents
-    // char history[3]; 
-    // int creation_date; // data de criação da conta
+    // // int id;
+    // // Client owner[5];
+    // // char account_type; // N -> normal, I -> insent
+    // // int balance; // account ballance in cents
+    // // char history[3]; 
+    // // int creation_date; // data de criação da conta
 
     //Where (*bank).accounts[new_id] is a new client
     (*bank).accounts[new_id].id = new_id + 1;
