@@ -32,6 +32,7 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     //Where (*bank).accounts[new_id] is a new client
     (*bank).accounts[new_id].id = new_id + 1;
 
+
     //TODO for all owners
     long user_nif;
     do{
