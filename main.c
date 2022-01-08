@@ -6,8 +6,6 @@
     @date: 08/11/2021
 */
 
-//! https://www.guru99.com/c-file-input-output.html
-//!  necessario variavel para guardar dados do banco
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -68,6 +66,9 @@ int main(){
             printf("Voce vai Gravar listagem de conta em ficheiro");
             break;
 
+        case 97:
+            printf("\a");
+            break;
         case 98: // TODO remove at end DEVELOPMENT ONLY
             printf("bank accounts = %d\n", bank.active_accounts);
             break;

@@ -32,14 +32,14 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     //Where (*bank).accounts[new_id] is a new client
     (*bank).accounts[new_id].id = new_id + 1; // Define the new account ID
 
-    (*bank).accounts[new_id].total_owners = 1; // TODO Ask the user how many
+    (*bank).accounts[new_id].total_owners = 5; // TODO Ask the user how many
     
 
     int counter_owner = 0;
     do{
     long user_nif;
     do{
-        printf("Qual o seu nif?\n\t");
+        printf("Qual o NIF do %d titular?\n\t", counter_owner +1);
         user_nif = request_long();
         if(!verify_nif(user_nif))printf("Introduza um nif valido! \n");
     }while(!verify_nif(user_nif));
@@ -49,7 +49,7 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     get_name_from_nif( bank, &(*bank).accounts[new_id].owner[counter_owner] ); // Gets the name for the user
 
     counter_owner++;
-    }while(counter_owner < &(*bank).accounts[new_id].total_owners); // TODO Trocar para fazer todos os owners
+    }while(counter_owner < (*bank).accounts[new_id].total_owners); // loops over all owners
    
     
 
@@ -82,7 +82,12 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
 void print_account(Account account){ //! TODO THINGS TO FINISH
     
     printf("ID: %d\n", account.id);
-    print_client(account.owner[0]); //TODO for all owners
+    printf("Titulares da conta: \n");
+    for(int i = 0; i < account.total_owners; i++){
+        print_client(account.owner[i]);
+        printf("\n");
+    }
+    
     printf("Balance: %d\n", account.balance);
     printf("history: %c\n", account.history[0]); // TODO for all history
     printf("creation date: \n\tday: %d\n\tmonth: %d\n\tyear: %d \n", account.creation_date.day, account.creation_date.month, account.creation_date.year);
@@ -118,9 +123,13 @@ void get_name_from_nif(Bank *bank, Client *client){
         account_number++;
     }
 
-    printf("Qual o seu nome?\n\t");
     char name[51];
-    gets(name);
+    do{
+        printf("Qual o seu nome?\n\t"); // TODO verify if name is valid
+        gets(name);
+        if(!verify_name(name)) printf("Esse nome nao e valido!\n");
+    }while(!verify_name(name));
+    
     strcpy((*client).name, name);
 }
 
