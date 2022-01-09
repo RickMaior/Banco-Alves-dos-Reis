@@ -52,8 +52,8 @@ int main(){
         case 5: 
             withdraw_money(&bank);
             break;
-        case 6: //! TODO THINGS TO FINISH
-            printf("Voce vai Transferir dinheiro");
+        case 6: 
+            transfer_money(&bank);
             break;
         //TODO fazer ate aqui na primeira parte
         case 7: //! TODO THINGS TO FINISH

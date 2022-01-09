@@ -192,6 +192,8 @@ void deposit_money(Bank *bank){ // TODO function to be finished
 }
 
 void withdraw_money(Bank *bank){ // TODO function to be finished
+// User gets locked if the account has 0 balance
+
     int account;
     do{
         printf("Qual conta quer levantar dinheiro? ");
@@ -215,7 +217,41 @@ void withdraw_money(Bank *bank){ // TODO function to be finished
 
 }
 
-void transfer_money(Bank *bank){ //! TODO function to be done
+void transfer_money(Bank *bank){ // TODO function to be done
+// User gets locked if the account has 0 balance
+
+    int account_sender;
+    do{
+        printf("De qual conta que enviar dinheiro? ");
+        account_sender = request_integer();
+        if(account_sender <= 0 || account_sender > (*bank).active_accounts) printf("Introduza um ID valido! \n");
+    }while(account_sender <= 0 || account_sender > (*bank).active_accounts);
+    account_sender--;
+
+    int account_receiver;
+    do{
+        printf("Para qual conta quer enviar dinheiro? ");
+        account_receiver = request_integer();
+        if(account_receiver <= 0 || account_receiver > (*bank).active_accounts) printf("Introduza um ID valido! \n");
+        if(account_receiver == (account_sender+1)) printf("Voce nao pode enviar dinheiro para a mesma conta\n");
+    }while(account_receiver <= 0 || account_receiver > (*bank).active_accounts || account_receiver == (account_sender+1) );
+    account_receiver--;
+
+    //TODO add action cost
+
+    float user_money = 0;
+    do{
+        printf("Quanto dinheiro quer enviar? ");
+        user_money = request_float(); 
+        if(user_money <=0 || user_money*100 > (*bank).accounts[account_sender].balance ) printf("Voce nao pode transferir essa quantia!\n");
+    }while(user_money <=0 || user_money*100 > (*bank).accounts[account_sender].balance  );
+    
+    (*bank).accounts[account_sender].balance -= (user_money*100);
+    (*bank).accounts[account_receiver].balance += (user_money*100);
+
+    printf("Seu novo saldo e: %d,%.2d euros.\n", (*bank).accounts[account_sender].balance/100, (*bank).accounts[account_sender].balance%100);
+    printf("O saldo da outra conta e: %d,%.2d euros.\n", (*bank).accounts[account_receiver].balance/100, (*bank).accounts[account_receiver].balance%100); 
+
 }
 
 
