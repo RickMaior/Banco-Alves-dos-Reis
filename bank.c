@@ -132,7 +132,7 @@ void find_account_from_nif(Bank bank){
             
         }
     }
-    
+
     if(accounts_found == 0) printf("Nao foi encontrada nenhuma conta com esse NIF");
 
 }
@@ -164,6 +164,61 @@ void get_name_from_nif(Bank *bank, Client *client){
     
     strcpy((*client).name, name);
 }
+
+void deposit_money(Bank *bank){ // TODO function to be finished
+    int account;
+    do{
+        printf("Qual conta quer depositar dinheiro? ");
+        account = request_integer();
+        if(account <= 0 || account > (*bank).active_accounts) printf("Introduza um ID valido! \n");
+    }while(account <= 0 || account > (*bank).active_accounts);
+    account--;
+
+    //TODO add action cost
+
+    float user_money = 0;
+    do{
+        printf("Quanto dinheiro vai depositar na conta? ");
+        user_money = request_float(); 
+        if(user_money <=0) printf("Introduza uma quantia valida de dinheiro!\n");
+    }while(user_money <= 0 );
+    
+    (*bank).accounts[account].balance += (user_money*100);
+
+    printf("Seu novo saldo e: %d,%.2d euros.\n", (*bank).accounts[account].balance/100, (*bank).accounts[account].balance%100);
+
+
+
+}
+
+void withdraw_money(Bank *bank){ // TODO function to be finished
+    int account;
+    do{
+        printf("Qual conta quer levantar dinheiro? ");
+        account = request_integer();
+        if(account <= 0 || account > (*bank).active_accounts) printf("Introduza um ID valido! \n");
+    }while(account <= 0 || account > (*bank).active_accounts);
+    account--;
+
+    //TODO add action cost
+
+    float user_money = 0;
+    do{
+        printf("Quanto dinheiro vai levantar da conta? ");
+        user_money = request_float(); 
+        if(user_money <=0 || user_money*100 > (*bank).accounts[account].balance ) printf("Voce nao pode levantar essa quantia!\n");
+    }while(user_money <=0 || user_money*100 > (*bank).accounts[account].balance  );
+    
+    (*bank).accounts[account].balance -= (user_money*100);
+
+    printf("Seu novo saldo e: %d,%.2d euros.\n", (*bank).accounts[account].balance/100, (*bank).accounts[account].balance%100);
+
+}
+
+void transfer_money(Bank *bank){ //! TODO function to be done
+}
+
+
 
 // BANK
 Bank get_bank(){

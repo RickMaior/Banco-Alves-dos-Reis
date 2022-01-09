@@ -46,11 +46,11 @@ int main(){
         case 3: //TODO user gets locked if there are no accounts
             find_account_from_id(bank);
             break;
-        case 4: //! TODO THINGS TO FINISH
-            printf("Voce vai Depositar dinheiro");
+        case 4: 
+            deposit_money(&bank);
             break;
-        case 5: //! TODO THINGS TO FINISH
-            printf("Voce vai Levantar dinheiro");
+        case 5: 
+            withdraw_money(&bank);
             break;
         case 6: //! TODO THINGS TO FINISH
             printf("Voce vai Transferir dinheiro");
@@ -66,15 +66,10 @@ int main(){
             printf("Voce vai Gravar listagem de conta em ficheiro");
             break;
 
-        case 97:
-            printf("\a");
-            break;
         case 98: // TODO remove at end DEVELOPMENT ONLY
             printf("bank accounts = %d\n", bank.active_accounts);
             break;
-        case 99: // TODO remove at end DEVELOPMENT ONLY
-            print_account(bank.accounts[0]);
-            break;
+
         default:
             printf("Introduza uma operacao valida!");
         }
