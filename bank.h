@@ -29,9 +29,11 @@ void new_account(Bank *bank);
 
 void print_account(Account account);
 
-void check_account(Bank bank);
+void find_account_from_id(Bank bank);
 
-void get_name_from_nif(Bank *bank,  Client *client); // sees if name is already given to that nif, else it requests the user a name
+void find_account_from_nif(Bank bank); // can be more than one account
+
+void get_name_from_nif(Bank *bank,  Client *client); // see if name is already given to that nif, else it requests the user a name
 
 // BANK functions
 Bank get_bank();

@@ -65,7 +65,6 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     
     float user_money;
     do{
-        //TODO ask user account new balance
         printf("Qual o valor pretendido para abrir a conta?\n");
         user_money = request_float();
         (*bank).accounts[new_id].balance = user_money * 100;
@@ -104,7 +103,7 @@ void print_account(Account account){ //! TODO THINGS TO FINISH
  
 }
 
-void check_account(Bank bank){
+void find_account_from_id(Bank bank){
     int account_check = -1;
     
     do{
@@ -115,6 +114,29 @@ void check_account(Bank bank){
     printf("\n");
     print_account(bank.accounts[account_check -1]);
 }
+
+void find_account_from_nif(Bank bank){
+    printf("Qual o NIF do utilizador pelo qual quer pesquisar?\n");
+    long user_nif = request_long();
+    int accounts_found = 0;
+
+    for(int account = 0; account < bank.active_accounts ;account++){ // loop por todas as contas
+       // printf("\nVendo conta n: %d\n", account +1);
+        for(int owner = 0; owner < bank.accounts[account].total_owners; owner++){ // loop por todos os utilizadores
+            if(bank.accounts[account].owner[owner].nif == user_nif) {
+                print_account(bank.accounts[account]);
+                accounts_found++;
+                printf("\n-----------------------------\n");
+                break;
+            }
+            
+        }
+    }
+    
+    if(accounts_found == 0) printf("Nao foi encontrada nenhuma conta com esse NIF");
+
+}
+
 
 void get_name_from_nif(Bank *bank, Client *client){
 
