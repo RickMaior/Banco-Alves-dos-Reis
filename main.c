@@ -30,7 +30,7 @@ int main(){
 
         opcao = request_integer();
 
-        printf("\n\tVoce escolheu %d\n", opcao);
+        printf("\n\tVoce escolheu %d\n", opcao); //TODO change?
 
         switch (opcao){
         case 0:
