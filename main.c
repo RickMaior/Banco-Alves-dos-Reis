@@ -57,13 +57,13 @@ int main(){
             break;
         //TODO fazer ate aqui na primeira parte
         case 7: //! TODO THINGS TO FINISH
-            printf("Voce vai Editar conta");
+            printf("Voce vai Editar conta (por fazer)\n");
             break;
         case 8: //! TODO THINGS TO FINISH
-            printf("Voce vai Eliminar conta");
+            printf("Voce vai Eliminar conta (por fazer)\n");
             break;
         case 9: //! TODO THINGS TO FINISH
-            printf("Voce vai Gravar listagem de conta em ficheiro");
+            printf("Voce vai Gravar listagem de conta em ficheiro (por fazer)\n");
             break;
 
         case 98: // TODO remove at end DEVELOPMENT ONLY
