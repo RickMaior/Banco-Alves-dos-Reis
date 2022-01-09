@@ -32,14 +32,20 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     //Where (*bank).accounts[new_id] is a new client
     (*bank).accounts[new_id].id = new_id + 1; // Define the new account ID
 
-    (*bank).accounts[new_id].total_owners = 5; // TODO Ask the user how many
+
+    do{
+        printf("Quantos titulares a conta vai ter?\n");
+        (*bank).accounts[new_id].total_owners = request_integer(); 
+        if((*bank).accounts[new_id].total_owners > 5 ||  (*bank).accounts[new_id].total_owners < 1) printf("Introduza um numero valido de utilizadores! (entre 1 e 5)\n");
+    }while( (*bank).accounts[new_id].total_owners > 5 ||  (*bank).accounts[new_id].total_owners < 1);
     
+
 
     int counter_owner = 0;
     do{
     long user_nif;
     do{
-        printf("Qual o NIF do %d titular?\n\t", counter_owner +1);
+        printf("Qual o NIF do %d titular?\n\t", counter_owner +1); // TODO verify if nif is already associated with the account if more than one owner
         user_nif = request_long();
         if(!verify_nif(user_nif))printf("Introduza um nif valido! \n");
     }while(!verify_nif(user_nif));
@@ -57,22 +63,26 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     printf("Qual o tipo de conta pretendida?\n");
     (*bank).accounts[new_id].account_type = 'N';
     
+    float user_money;
     do{
         //TODO ask user account new balance
         printf("Qual o valor pretendido para abrir a conta?\n");
-        (*bank).accounts[new_id].balance = 15000;// TODO ask user the value
+        user_money = request_float();
+        (*bank).accounts[new_id].balance = user_money * 100;
         if((*bank).accounts[new_id].balance < 15000) printf("Valor insuficiente para abrir conta!\n");
     }while((*bank).accounts[new_id].balance < 15000);
 
-    // function to get the day from when the account was created
-    get_date( &(*bank).accounts[new_id].creation_date );
+
+
+    
+    get_date( &(*bank).accounts[new_id].creation_date ); // function to get the day from when the account was created
 
     //TODO ask user if user likes the new account
     // if(user_likes){
     //     save();
     // }else repeat();
     
-
+    //TODO add account criation to the user history
     // Saving the new account
     printf("Conta criada com sucesso com ID: %d\n", (*bank).accounts[new_id].id);
     (*bank).funds += (*bank).accounts[new_id].balance;
@@ -88,7 +98,7 @@ void print_account(Account account){ //! TODO THINGS TO FINISH
         printf("\n");
     }
     
-    printf("Balance: %d\n", account.balance);
+    printf("Balance: %d,%.2d euros\n", account.balance/100, account.balance%100);
     printf("history: %c\n", account.history[0]); // TODO for all history
     printf("creation date: \n\tday: %d\n\tmonth: %d\n\tyear: %d \n", account.creation_date.day, account.creation_date.month, account.creation_date.year);
  
