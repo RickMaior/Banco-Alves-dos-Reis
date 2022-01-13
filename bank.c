@@ -42,7 +42,7 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
 
 
     int counter_owner = 0;
-    do{
+    do{ // TODO indentar isto
     long user_nif;
     do{
         printf("Qual o NIF do %d titular?\n\t", counter_owner +1); // TODO verify if nif is already associated with the account if more than one owner
