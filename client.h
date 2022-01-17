@@ -3,7 +3,7 @@
 
 typedef struct{
     char name[51];
-    int nif;
+    long nif;
 } Client;
 
 Client new_client(char *name,long nif);
