@@ -22,9 +22,19 @@ Transaction new_transaction(char *action, int value){ //TODO function to be done
     new_transaction.value = value;
     get_date(&new_transaction.date);
 
+    return new_transaction;
+
 } 
 
 void print_history(History history){ //TODO function to be done 
+
+    for(int c = 0; c < history.transactions_number ; c++){
+        printf("Transaction: ");
+        puts(history.transaction[c].action);
+        printf("\nAmmount: %d\n", history.transaction[c].value);
+        printf("Transaction date: \n\tday: %d\n\tmonth: %d\n\tyear: %d \n", history.transaction[c].date.day, history.transaction[c].date.month, history.transaction[c].date.year);
+    }
+
 
 } 
 

@@ -9,6 +9,8 @@ typedef struct{
 
 void get_date(Date *date);
 
+//TODO FUnction to print date
+
 
 
 #endif
