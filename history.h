@@ -7,14 +7,17 @@ typedef struct{
     char action[51];
     int value;
     Date date;
+} Transaction;
+
+typedef struct{
+    Transaction transaction[3];
+    int transactions_number;
 } History;
 
-History new_hitory(char *action, int value);
+Transaction new_transaction(char *action, int value); //TODO function to be done
 
-// void print_client(Client client);
+void print_history(History history); //TODO function to be done 
 
-// int verify_nif( long number_to_verify);
-
-// int verify_name(char *name);
+void update_history(History *history, Transaction transaction); //TODO function to be done
 
 #endif
