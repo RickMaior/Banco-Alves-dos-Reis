@@ -20,6 +20,11 @@
 
 void new_account(Bank *bank){ // Creates a new client with the parameters as data (where nif was already validated) //! TODO THINGS TO FINISH
     
+    if( (*bank).active_accounts >= 100){
+        printf("O banco chegou ao limite de contas.\n");
+        return;
+    }
+
     int new_id = (*bank).active_accounts ;
 
     // // int id;
@@ -157,7 +162,7 @@ void get_name_from_nif(Bank *bank, Client *client){
 
     char name[51];
     do{
-        printf("Qual o seu nome?\n\t"); // TODO verify if name is valid
+        printf("Qual o seu nome?\n\t");
         gets(name);
         if(!verify_name(name)) printf("Esse nome nao e valido!\n");
     }while(!verify_name(name));
