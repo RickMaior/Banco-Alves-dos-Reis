@@ -13,6 +13,8 @@
 #include "read.h"
 #include "bank.h"
 
+#include "history.h" // TODO make sure if still needed
+
 // Funtions:
 
 void print_menu();
@@ -21,6 +23,8 @@ void print_menu();
 
 int main(){
     Bank bank = get_bank();
+
+    Transaction transaction; // TODO just for testing
   
 
     int opcao = 0;  

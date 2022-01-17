@@ -18,6 +18,6 @@ Transaction new_transaction(char *action, int value); //TODO function to be done
 
 void print_history(History history); //TODO function to be done 
 
-void update_history(History *history, Transaction transaction); //TODO function to be done
+void update_history(History *history, Transaction new_transaction); //TODO function to be done
 
 #endif
