@@ -42,19 +42,19 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
 
 
     int counter_owner = 0;
-    do{ // TODO indentar isto
-    long user_nif;
-    do{
-        printf("Qual o NIF do %d titular?\n\t", counter_owner +1); // TODO verify if nif is already associated with the account if more than one owner
-        user_nif = request_long();
-        if(!verify_nif(user_nif))printf("Introduza um nif valido! \n");
-    }while(!verify_nif(user_nif));
-                                                                                                                                                                            
-    (*bank).accounts[new_id].owner[counter_owner].nif = user_nif;
+    do{ 
+        long user_nif;
+        do{
+            printf("Qual o NIF do %d titular?\n\t", counter_owner +1); // TODO verify if nif is already associated with the account if more than one owner
+            user_nif = request_long();
+            if(!verify_nif(user_nif))printf("Introduza um nif valido! \n");
+        }while(!verify_nif(user_nif));
+                                                                                                                                                                                
+        (*bank).accounts[new_id].owner[counter_owner].nif = user_nif;
 
-    get_name_from_nif( bank, &(*bank).accounts[new_id].owner[counter_owner] ); // Gets the name for the user
+        get_name_from_nif( bank, &(*bank).accounts[new_id].owner[counter_owner] ); // Gets the name for the user
 
-    counter_owner++;
+        counter_owner++;
     }while(counter_owner < (*bank).accounts[new_id].total_owners); // loops over all owners
    
     
