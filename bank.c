@@ -12,6 +12,7 @@
 #include "read.h"
 #include "client.h"
 #include "bank.h"
+#include "history.h"
 
 
 // ACCOUNT
@@ -86,7 +87,8 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     //     save();
     // }else repeat();
     
-    //TODO add account criation to the user history
+    update_history( &(*bank).accounts[new_id].history, new_transaction("Account Creation", (*bank).accounts[new_id].balance) );
+
     // Saving the new account
     printf("Conta criada com sucesso com ID: %d\n", (*bank).accounts[new_id].id);
     (*bank).funds += (*bank).accounts[new_id].balance;
@@ -103,8 +105,9 @@ void print_account(Account account){ //! TODO THINGS TO FINISH
     }
     
     printf("Balance: %d,%.2d euros\n", account.balance/100, account.balance%100);
-    printf("history: %c\n", account.history[0]); // TODO for all history
-    printf("creation date: \n\tday: %d\n\tmonth: %d\n\tyear: %d \n", account.creation_date.day, account.creation_date.month, account.creation_date.year);
+    printf("History: \n");
+    print_history(account.history); // TODO for all history
+    printf("\nCreation date: \n\tday: %d\n\tmonth: %d\n\tyear: %d \n", account.creation_date.day, account.creation_date.month, account.creation_date.year);
  
 }
 

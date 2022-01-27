@@ -4,6 +4,7 @@
 
 #include "client.h"
 #include "date.h"
+#include "history.h"
 
 typedef struct{
     int id;
@@ -11,7 +12,7 @@ typedef struct{
     int total_owners;
     char account_type; // N -> normal, I -> insent
     int balance; // account ballance in cents
-    char history[3]; // TODO historico da conta
+    History history; // TODO historico da conta
     Date creation_date; // data de criação da conta
 
     

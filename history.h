@@ -11,7 +11,7 @@ typedef struct{
 
 typedef struct{
     Transaction transaction[3];
-    int transactions_number;
+    int transactions_number; // How many transactions have been done
 } History;
 
 Transaction new_transaction(char *action, int value); //TODO function to be done
