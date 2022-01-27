@@ -95,7 +95,7 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     (*bank).active_accounts++;
 }
 
-void print_account(Account account){ 
+void print_account(Account account){ //! TODO things to finish
     
     printf("ID: %d\n", account.id);
     printf("Titulares da conta: \n");
@@ -104,6 +104,7 @@ void print_account(Account account){
         printf("\n");
     }
     
+    //TODO Print account type
     printf("Balance: %d,%.2d euros\n", account.balance/100, account.balance%100);
     printf("History: \n");
     print_history(account.history); 
