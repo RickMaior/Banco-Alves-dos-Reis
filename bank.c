@@ -109,6 +109,13 @@ void print_account(Account account){ //! TODO THINGS TO FINISH
 }
 
 void find_account_from_id(Bank bank){
+
+    if(bank.active_accounts == 0) {
+        printf("Nao foi encontrada nenhuma conta no banco!\n");
+        return;
+    }
+
+
     int account_check = -1;
     
     do{
@@ -121,24 +128,44 @@ void find_account_from_id(Bank bank){
 }
 
 void find_account_from_nif(Bank bank){
-    printf("Qual o NIF do utilizador pelo qual quer pesquisar?\n");
-    long user_nif = request_long();
-    int accounts_found = 0;
+
+    if(bank.active_accounts == 0) {
+        printf("Nao foi encontrada nenhuma conta no banco!\n");
+        return;
+    }
+
+    int user_option;
+    long user_nif = -1;
+
+    do{
+        printf("Quer ver todas as contas (1) ou pesquisar por NIF (2) ?\n");
+        user_option = request_integer();
+        if(user_option != 1 && user_option != 2 ) printf("Introduza uma opcao valida!\n");
+    }while(user_option != 1 && user_option != 2 );
+    
+    if(user_option == 2){
+        
+        printf("Qual o NIF do utilizador pelo qual quer pesquisar?\n");
+        user_nif = request_long();
+         
+    }
+    int accounts_found = 0;   
 
     for(int account = 0; account < bank.active_accounts ;account++){ // loop por todas as contas
        // printf("\nVendo conta n: %d\n", account +1);
         for(int owner = 0; owner < bank.accounts[account].total_owners; owner++){ // loop por todos os utilizadores
-            if(bank.accounts[account].owner[owner].nif == user_nif) {
+            if(bank.accounts[account].owner[owner].nif == user_nif || user_option == 1) {
+                printf("\n-----------------------------\n");
                 print_account(bank.accounts[account]);
                 accounts_found++;
-                printf("\n-----------------------------\n");
+                
                 break;
             }
             
         }
     }
 
-    if(accounts_found == 0) printf("Nao foi encontrada nenhuma conta com esse NIF");
+    if(accounts_found == 0) printf("Nao foi encontrada nenhuma conta!\n");
 
 }
 
@@ -171,6 +198,12 @@ void get_name_from_nif(Bank *bank, Client *client){
 }
 
 void deposit_money(Bank *bank){ // TODO function to be finished
+
+    if( (*bank).active_accounts == 0) {
+        printf("Nao foi encontrada nenhuma conta no banco!\n");
+        return;
+    }
+
     int account;
     do{
         printf("Qual conta quer depositar dinheiro? ");
@@ -199,6 +232,13 @@ void deposit_money(Bank *bank){ // TODO function to be finished
 void withdraw_money(Bank *bank){ // TODO function to be finished
 // User gets locked if the account has 0 balance
 
+    if( (*bank).active_accounts == 0) {
+        printf("Nao foi encontrada nenhuma conta no banco!\n");
+        return;
+    }
+
+
+
     int account;
     do{
         printf("Qual conta quer levantar dinheiro? ");
@@ -224,6 +264,11 @@ void withdraw_money(Bank *bank){ // TODO function to be finished
 
 void transfer_money(Bank *bank){ // TODO function to be done
 // User gets locked if the account has 0 balance
+
+    if( (*bank).active_accounts == 0 || (*bank).active_accounts == 1 ) {
+        printf("Nao foram encontradas contas suficientes para efetuar uma transferencia!\n");
+        return;
+    }
 
     int account_sender;
     do{
