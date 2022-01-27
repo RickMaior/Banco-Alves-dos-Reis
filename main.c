@@ -47,7 +47,7 @@ int main(){
         case 2: 
             find_account_from_nif(bank);
             break;
-        case 3: //TODO user gets locked if there are no accounts
+        case 3: 
             find_account_from_id(bank);
             break;
         case 4: 
