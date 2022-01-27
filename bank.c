@@ -225,6 +225,8 @@ void deposit_money(Bank *bank){ // TODO function to be finished
     }while(user_money <= 0 );
     
     (*bank).accounts[account].balance += (user_money*100);
+    update_history( &(*bank).accounts[account].history, new_transaction("Deposit Money", (user_money*100) ) );
+
 
     printf("Seu novo saldo e: %d,%.2d euros.\n", (*bank).accounts[account].balance/100, (*bank).accounts[account].balance%100);
 
@@ -260,6 +262,7 @@ void withdraw_money(Bank *bank){ // TODO function to be finished
     }while(user_money <=0 || user_money*100 > (*bank).accounts[account].balance  );
     
     (*bank).accounts[account].balance -= (user_money*100);
+    update_history( &(*bank).accounts[account].history, new_transaction("Withdraw Money", -(user_money*100) ) );
 
     printf("Seu novo saldo e: %d,%.2d euros.\n", (*bank).accounts[account].balance/100, (*bank).accounts[account].balance%100);
 
@@ -305,6 +308,8 @@ void transfer_money(Bank *bank){ // TODO function to be done
     printf("Seu novo saldo e: %d,%.2d euros.\n", (*bank).accounts[account_sender].balance/100, (*bank).accounts[account_sender].balance%100);
     printf("O saldo da outra conta e: %d,%.2d euros.\n", (*bank).accounts[account_receiver].balance/100, (*bank).accounts[account_receiver].balance%100); 
 
+    update_history( &(*bank).accounts[account_sender].history, new_transaction("Transfer Money - Sending", -(user_money*100) ) );
+    update_history( &(*bank).accounts[account_receiver].history, new_transaction("Transfer Money - Receiving", (user_money*100) ) );
 }
 
 
