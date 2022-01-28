@@ -14,10 +14,10 @@ typedef struct{
     int transactions_number; // How many transactions have been done
 } History;
 
-Transaction new_transaction(char *action, int value); //TODO function to be done
+Transaction new_transaction(char *action, int value);
 
-void print_history(History history); //TODO function to be done 
+void print_history(History history); 
 
-void update_history(History *history, Transaction new_transaction); //TODO function to be done
+void update_history(History *history, Transaction new_transaction); 
 
 #endif
