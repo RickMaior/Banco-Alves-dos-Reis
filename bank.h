@@ -12,7 +12,7 @@ typedef struct{
     int total_owners;
     char account_type; // N -> normal, I -> insent
     int balance; // account ballance in cents
-    History history; // TODO historico da conta
+    History history; 
     Date creation_date; // data de criação da conta
 
     

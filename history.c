@@ -23,6 +23,10 @@
 
 */
 
+// Transaction deposito = new_transaction( "Deposito", 2000 );
+//printf("deposito %d", deposito.value)
+//update_history( &account.history, deposito);
+
 Transaction new_transaction(char *action, int value){ 
 
     Transaction new_transaction;
@@ -31,6 +35,7 @@ Transaction new_transaction(char *action, int value){
     new_transaction.action[50] = '\0';
     
     new_transaction.value = value;
+
     get_date(&new_transaction.date);
 
     return new_transaction;
@@ -47,7 +52,6 @@ void print_history(History history){
         printf("\n");
     }
 
-
 } 
 
 void update_history(History *history, Transaction new_transaction){ 
@@ -58,6 +62,7 @@ void update_history(History *history, Transaction new_transaction){
 
     }
     (*history).transaction[0] = new_transaction;
+    
     if( (*history).transactions_number < 3) (*history).transactions_number++;
 
 } 
