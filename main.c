@@ -39,7 +39,7 @@ int main(){
 
         opcao = request_integer();
 
-        printf("\n\tVoce escolheu %d\n", opcao); //TODO change?
+        //printf("\n\tVoce escolheu %d\n", opcao); //TODO change?
 
         switch (opcao){
         case 0:
@@ -64,7 +64,7 @@ int main(){
         case 6: 
             transfer_money(&bank);
             break;
-        //TODO fazer ate aqui na primeira parte
+
         case 7: //! TODO THINGS TO FINISH
             printf("Voce vai Editar conta (por fazer)\n");
             break;
