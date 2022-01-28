@@ -76,9 +76,6 @@ int main(){
             printf("bank accounts = %d\n", bank.active_accounts);
             break;
         
-
-
-
         default:
             printf("Introduza uma operacao valida!");
         }
