@@ -314,6 +314,54 @@ void transfer_money(Bank *bank){ // TODO function to be done
 }
 
 
+void account_to_file(Bank bank){ //! TODO THings to finish
+    FILE *f = fopen("accounts.txt", "w"); 
+
+    int account = 0;
+    for(account = 0; account < bank.active_accounts ;account++){ // loop por todas as contas
+        
+        for(int owner = 0; owner < bank.accounts[account].total_owners; owner++){ // loop por todos os utilizadores
+        } 
+
+
+        fprintf(f , "ID: %d\n", bank.accounts[account].id);
+        fprintf(f, "Titulares da conta: \n");
+        for(int i = 0; i < bank.accounts[account].total_owners; i++){
+            fprintf(f , "\tname = %s\n\tNif=%ld\n", bank.accounts[account].owner[i].name, bank.accounts[account].owner[i].nif);
+           
+            fprintf(f , "\n");
+        }
+            
+        //TODO Print account type
+        fprintf(f , "Balance: %d,%.2d euros\n", bank.accounts[account].balance/100, bank.accounts[account].balance%100);
+        fprintf(f , "History: \n");
+        
+        for(int c = 0; c < bank.accounts[account].history.transactions_number ; c++){
+            fprintf(f , "Transaction: \n\t");
+            fprintf(f , "%s\n" , bank.accounts[account].history.transaction[c].action);
+            fprintf(f , "\tAmmount: %d\n", bank.accounts[account].history.transaction[c].value); // TODO converter centimos em euros
+            fprintf(f , "\tTransaction date: \n\t\tday: %d\n\t\tmonth: %d\n\t\tyear: %d \n", bank.accounts[account].history.transaction[c].date.day, bank.accounts[account].history.transaction[c].date.month, bank.accounts[account].history.transaction[c].date.year);
+            fprintf(f , "\n");
+        }
+
+        fprintf(f , "\nCreation date: \n\tday: %d\n\tmonth: %d\n\tyear: %d \n", bank.accounts[account].creation_date.day, bank.accounts[account].creation_date.month, bank.accounts[account].creation_date.year);
+
+
+            
+        
+         
+        fprintf(f, "\n-----------------------------\n");
+    }
+
+    if(account == 0) fprintf(f, "Nao ha contas presentes neste banco");
+
+
+
+
+    printf("Contas guardadas com sucesso!\n");
+    fclose(f); 
+}
+
 
 // BANK
 Bank get_bank(){

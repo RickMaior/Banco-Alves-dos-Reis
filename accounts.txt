@@ -1,0 +1,63 @@
+ID: 1
+Titulares da conta: 
+	name = ricardo
+	Nif=123456789
+
+Balance: 298,00 euros
+History: 
+Transaction: 
+	Deposit Money
+	Ammount: 64
+	Transaction date: 
+		day: 27
+		month: 1
+		year: 2022 
+
+Transaction: 
+	Deposit Money
+	Ammount: 34
+	Transaction date: 
+		day: 27
+		month: 1
+		year: 2022 
+
+Transaction: 
+	Deposit Money
+	Ammount: 50
+	Transaction date: 
+		day: 27
+		month: 1
+		year: 2022 
+
+
+Creation date: 
+	day: 27
+	month: 1
+	year: 2022 
+
+-----------------------------
+ID: 2
+Titulares da conta: 
+	name = joso
+	Nif=123444321
+
+	name = carlos
+	Nif=234567890
+
+Balance: 249,00 euros
+History: 
+Transaction: 
+	Account Creation
+	Ammount: 24900
+	Transaction date: 
+		day: 28
+		month: 1
+		year: 2022 
+
+
+Creation date: 
+	day: 28
+	month: 1
+	year: 2022 
+
+-----------------------------

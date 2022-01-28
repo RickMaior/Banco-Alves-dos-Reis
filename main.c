@@ -71,8 +71,8 @@ int main(){
         case 8: //! TODO THINGS TO FINISH
             printf("Voce vai Eliminar conta (por fazer)\n");
             break;
-        case 9: //! TODO THINGS TO FINISH
-            printf("Voce vai Gravar listagem de conta em ficheiro (por fazer)\n");
+        case 9: 
+            account_to_file(bank);
             break;
 
         case 98: // TODO remove at end DEVELOPMENT ONLY

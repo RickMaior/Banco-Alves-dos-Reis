@@ -42,6 +42,8 @@ void withdraw_money(Bank *bank);
 
 void transfer_money(Bank *bank);
 
+void account_to_file(Bank bank);
+
 // BANK functions
 Bank get_bank();
 
