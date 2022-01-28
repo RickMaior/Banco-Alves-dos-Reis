@@ -26,9 +26,6 @@ void print_menu();
 int main(){
     Bank bank = get_bank();
 
-    History history; // TODO remove at end DEVELOPMENT ONLY
-    Transaction transaction; // TODO remove at end DEVELOPMENT ONLY
-    int numberss; // TODO remove at end DEVELOPMENT ONLY
 
   
 
@@ -79,13 +76,7 @@ int main(){
             printf("bank accounts = %d\n", bank.active_accounts);
             break;
         
-        case 99: // TODO remove at end DEVELOPMENT ONLY
-            numberss = request_integer();
-            //transaction = new_transaction("Teste", numberss);
-            //update_history(&history, transaction);
-            update_history(&history, new_transaction("Teste", numberss) );
-            print_history(history, stdout);
-            break;
+
 
 
         default:
