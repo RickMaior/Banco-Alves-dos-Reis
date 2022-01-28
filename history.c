@@ -20,6 +20,7 @@
         &history -> the variable containing the history that wants to be updated
         Name -> the description of the transaction
         value -> The ammount that was used in the transaction in cents
+        
 */
 
 Transaction new_transaction(char *action, int value){ //TODO function to be done
