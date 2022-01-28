@@ -42,14 +42,14 @@ Transaction new_transaction(char *action, int value){
 
 } 
 
-void print_history(History history){ 
+void print_history(History history, FILE *file){ 
 
     for(int c = 0; c < history.transactions_number ; c++){
-        printf("Transaction: \n\t");
-        puts(history.transaction[c].action);
-        printf("\tAmmount: %d\n", history.transaction[c].value); // TODO converter centimos em euros
-        printf("\tTransaction date: \n\t\tday: %d\n\t\tmonth: %d\n\t\tyear: %d \n", history.transaction[c].date.day, history.transaction[c].date.month, history.transaction[c].date.year);
-        printf("\n");
+        fprintf(file , "Transaction: \n\t");
+        fputs(history.transaction[c].action, file);
+        fprintf(file , "\tAmmount: %d\n", history.transaction[c].value); // TODO converter centimos em euros
+        fprintf(file , "\tTransaction date: \n\t\tday: %d\n\t\tmonth: %d\n\t\tyear: %d \n", history.transaction[c].date.day, history.transaction[c].date.month, history.transaction[c].date.year);
+        fprintf(file ,"\n");
     }
 
 } 
@@ -62,7 +62,7 @@ void update_history(History *history, Transaction new_transaction){
 
     }
     (*history).transaction[0] = new_transaction;
-    
+
     if( (*history).transactions_number < 3) (*history).transactions_number++;
 
 } 

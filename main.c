@@ -84,7 +84,7 @@ int main(){
             //transaction = new_transaction("Teste", numberss);
             //update_history(&history, transaction);
             update_history(&history, new_transaction("Teste", numberss) );
-            print_history(history);
+            print_history(history, stdout);
             break;
 
 

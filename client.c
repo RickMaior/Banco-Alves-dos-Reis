@@ -20,8 +20,8 @@
 //     return client;
 // }
 
-void print_client(Client client){   
-    printf("name = %s\nNif=%ld\n", client.name, client.nif);
+void print_client(Client client , FILE *file){   
+    fprintf(file , "name = %s\nNif=%ld\n", client.name, client.nif);
 }
 
 

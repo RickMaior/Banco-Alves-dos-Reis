@@ -28,7 +28,7 @@ typedef struct{
 
 void new_account(Bank *bank); 
 
-void print_account(Account account);
+void print_account(Account account , FILE *file);
 
 void find_account_from_id(Bank bank);
 

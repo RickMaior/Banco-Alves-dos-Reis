@@ -8,7 +8,7 @@ typedef struct{
 
 Client new_client(char *name,long nif);
 
-void print_client(Client client);
+void print_client(Client client, FILE *file);
 
 int verify_nif( long number_to_verify);
 

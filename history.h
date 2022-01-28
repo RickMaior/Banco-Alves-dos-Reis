@@ -16,7 +16,7 @@ typedef struct{
 
 Transaction new_transaction(char *action, int value);
 
-void print_history(History history); 
+void print_history(History history , FILE *file); 
 
 void update_history(History *history, Transaction new_transaction); 
 
