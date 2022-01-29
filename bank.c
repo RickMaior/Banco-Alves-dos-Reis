@@ -390,7 +390,7 @@ void account_to_file(Bank bank){
     for(account = 0; account < bank.active_accounts ;account++){ // loop por todas as contas
         
         print_account(bank.accounts[account] , f); 
-    
+        fprintf(f, "\n-----------------------------\n");    
     }
 
     if(account == 0) fprintf(f, "Nao ha contas presentes neste banco");

@@ -44,7 +44,7 @@ void print_history(History history, FILE *file){
     for(int c = 0; c < history.transactions_number ; c++){
         fprintf(file , "Transaction: \n\t");
         fputs(history.transaction[c].action, file);
-        fprintf(file , "\tAmmount: %d\n", history.transaction[c].value); // TODO converter centimos em euros
+        if(history.transaction[c].value != 0) fprintf(file , "\tAmmount: %d,%.2d euros\n", history.transaction[c].value/100 , history.transaction[c].value%100); // TODO converter centimos em euros
         fprintf(file , "\tTransaction date: \n\t\tday: %d\n\t\tmonth: %d\n\t\tyear: %d \n", history.transaction[c].date.day, history.transaction[c].date.month, history.transaction[c].date.year);
         fprintf(file ,"\n");
     }
