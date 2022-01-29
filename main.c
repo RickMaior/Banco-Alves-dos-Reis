@@ -66,7 +66,7 @@ int main(){
             printf("Voce vai Editar conta (por fazer)\n");
             break;
         case 8: //! TODO THINGS TO FINISH
-            printf("Voce vai Eliminar conta (por fazer)\n");
+            delete_account(&bank);
             break;
         case 9: 
             account_to_file(bank);

@@ -23,9 +23,6 @@
 
 */
 
-// Transaction deposito = new_transaction( "Deposito", 2000 );
-//printf("deposito %d", deposito.value)
-//update_history( &account.history, deposito);
 
 Transaction new_transaction(char *action, int value){ 
 

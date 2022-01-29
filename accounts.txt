@@ -39,8 +39,15 @@ Nif=123444321
 name = carlos
 Nif=234567890
 
-Balance: 249,00 euros
+Balance: 0,00 euros
 History: 
+Transaction: 
+	Withdraw Money	Ammount: -24900
+	Transaction date: 
+		day: 29
+		month: 1
+		year: 2022 
+
 Transaction: 
 	Account Creation	Ammount: 24900
 	Transaction date: 

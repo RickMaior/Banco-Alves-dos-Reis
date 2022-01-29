@@ -104,7 +104,21 @@ void print_account(Account account, FILE *file){ //! TODO things to finish
         fprintf(file ,"\n");
     }
     
-    //TODO Print account type
+    switch(account.account_type){
+        case 'N':
+            fprintf(file ,"Tipo de conta: Normal\n");
+            break;
+        case 'I':
+            fprintf(file ,"Tipo de conta: Insenta\n");
+            break;
+        case 'D':
+            fprintf(file ,"Conta Apagada!\n");
+            break;
+        default:
+            fprintf(file ,"Nao foi possivel determinar o Tipo de conta, por favor contacte um administrador!\n");
+
+    }
+
     fprintf(file ,"Balance: %d,%.2d euros\n", account.balance/100, account.balance%100);
     fprintf(file ,"History: \n");
     print_history(account.history, file); 
@@ -216,6 +230,11 @@ void deposit_money(Bank *bank){ // TODO function to be finished
     }while(account <= 0 || account > (*bank).active_accounts);
     account--;
 
+    if( (*bank).accounts[account].account_type == 'D'){    
+        printf("Nao e possivel efetuar operacoes em contas apagadas!");
+        return;
+    }
+
     //TODO add action cost
 
     float user_money = 0;
@@ -253,6 +272,11 @@ void withdraw_money(Bank *bank){ // TODO function to be finished
     }while(account <= 0 || account > (*bank).active_accounts);
     account--;
 
+    if( (*bank).accounts[account].account_type == 'D'){    
+        printf("Nao e possivel efetuar operacoes em contas apagadas!");
+        return;
+    }
+
     //TODO add action cost
 
     float user_money = 0;
@@ -285,6 +309,11 @@ void transfer_money(Bank *bank){ // TODO function to be done
     }while(account_sender <= 0 || account_sender > (*bank).active_accounts);
     account_sender--;
 
+    if( (*bank).accounts[account_sender].account_type == 'D'){    
+        printf("Nao e possivel efetuar operacoes em contas apagadas!");
+        return;
+    }
+
     int account_receiver;
     do{
         printf("Para qual conta quer enviar dinheiro? ");
@@ -293,6 +322,11 @@ void transfer_money(Bank *bank){ // TODO function to be done
         if(account_receiver == (account_sender+1)) printf("Voce nao pode enviar dinheiro para a mesma conta\n");
     }while(account_receiver <= 0 || account_receiver > (*bank).active_accounts || account_receiver == (account_sender+1) );
     account_receiver--;
+
+    if( (*bank).accounts[account_receiver].account_type == 'D'){    
+        printf("Nao e possivel transferir dinheiro para contas apagadas!");
+        return;
+    }
 
     //TODO add action cost
 
@@ -311,6 +345,40 @@ void transfer_money(Bank *bank){ // TODO function to be done
 
     update_history( &(*bank).accounts[account_sender].history, new_transaction("Transfer Money - Sending", -(user_money*100) ) );
     update_history( &(*bank).accounts[account_receiver].history, new_transaction("Transfer Money - Receiving", (user_money*100) ) );
+}
+
+void delete_account(Bank *bank){ //TODO to finish
+
+
+    if( (*bank).active_accounts == 0) {
+        printf("Nao foi encontrada nenhuma conta no banco!\n");
+        return;
+    }
+
+
+    int account_to_delete = -1;
+    
+    do{
+        printf("Qual conta quer apagar? ");
+        account_to_delete = request_integer();
+        if(account_to_delete <= 0 || account_to_delete > (*bank).active_accounts) printf("Introduza um ID valido! \n");
+    }while(account_to_delete <= 0 || account_to_delete > (*bank).active_accounts);
+    printf("\n");
+    
+    if( (*bank).accounts[account_to_delete -1].account_type == 'D' ){
+        printf("Conta ja foi apagada!\n");
+        return;
+    } 
+    
+    if( (*bank).accounts[account_to_delete -1].balance > 0 ){
+        printf("Conta tem que ter saldo a 0 para ser apagada!\n");
+        return;
+    } 
+
+    (*bank).accounts[account_to_delete -1].account_type = 'D';
+    update_history( &(*bank).accounts[account_to_delete -1].history , new_transaction("Apagar a conta", 0 ) );
+    
+    printf("A conta %d foi apagada com sucesso!\n", (*bank).accounts[account_to_delete -1] );
 }
 
 
