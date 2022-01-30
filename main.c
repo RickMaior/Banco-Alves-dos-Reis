@@ -62,10 +62,10 @@ int main(){
             transfer_money(&bank);
             break;
 
-        case 7: //! TODO THINGS TO FINISH
-            printf("Voce vai Editar conta (por fazer)\n");
+        case 7:
+            edit_account(&bank);
             break;
-        case 8: //! TODO THINGS TO FINISH
+        case 8: 
             delete_account(&bank);
             break;
         case 9: 

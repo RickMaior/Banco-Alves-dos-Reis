@@ -391,7 +391,59 @@ void transfer_money(Bank *bank){ // TODO function to be done
     update_history( &(*bank).accounts[account_receiver].history, new_transaction("Transfer Money - Receiving", (user_money*100) ) );
 }
 
-void delete_account(Bank *bank){ //TODO to finish
+void edit_account(Bank *bank){ //TODO to finish
+
+    if( (*bank).active_accounts == 0) {
+        printf("Nao foi encontrada nenhuma conta no banco!\n");
+        return;
+    }
+
+    int account_to_edit = -1;
+    
+    do{
+        printf("Qual conta quer editar? ");
+        account_to_edit = request_integer();
+        if(account_to_edit <= 0 || account_to_edit > (*bank).active_accounts) printf("Introduza um ID valido! \n");
+    }while(account_to_edit <= 0 || account_to_edit > (*bank).active_accounts);
+    printf("\n");
+    account_to_edit--;
+
+    if( (*bank).accounts[account_to_edit].account_type == 'D' ){
+        printf("Nao e possivel editar uma conta apagada!\n");
+        return;
+    } 
+
+    int opcao;
+
+    do{
+        
+        printf("\n\n\t+++ OPERACAO PRETENDIDA +++\n");
+        printf("\t0. Sair de editar conta\n");
+        printf("\t1. Alterar o tipo de conta\n");
+        printf("\t2. adicionar titulares\n");
+
+        opcao = 0;
+        opcao = request_integer();  
+
+        switch (opcao){
+            case 0:
+                printf("Voltando ao menu principal!\n");
+                break;
+            case 1:
+                if( (*bank).accounts[account_to_edit].account_type == 'N') (*bank).accounts[account_to_edit].account_type = 'I';
+                else (*bank).accounts[account_to_edit].account_type = 'N';
+                printf("A sua conta foi editada com sucesso! \n"); 
+                break;
+            case 2:
+                printf("Adicionando titulares!\n");
+                break;
+            default:
+            printf("Introduza uma operacao valida!");
+        }
+    }while(opcao != 0);
+}
+
+void delete_account(Bank *bank){ 
 
 
     if( (*bank).active_accounts == 0) {

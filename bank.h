@@ -42,6 +42,8 @@ void withdraw_money(Bank *bank);
 
 void transfer_money(Bank *bank);
 
+void edit_account(Bank *bank);
+
 void delete_account(Bank *bank);
 
 void account_to_file(Bank bank);
