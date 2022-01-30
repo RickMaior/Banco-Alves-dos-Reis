@@ -41,7 +41,7 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     }while( (*bank).accounts[new_id].total_owners > 5 ||  (*bank).accounts[new_id].total_owners < 1);
     
 
-
+    // gets nif and name for all owners of the account
     int counter_owner = 0;
     do{ 
         long user_nif;
@@ -53,14 +53,14 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
                                                                                                                                                                                 
         (*bank).accounts[new_id].owner[counter_owner].nif = user_nif;
 
-        get_name_from_nif( bank, &(*bank).accounts[new_id].owner[counter_owner] ); // Gets the name for the user
+        give_owner_name_and_nif( bank, &(*bank).accounts[new_id].owner[counter_owner] , user_nif); // Gets the name for the user
 
         counter_owner++;
     }while(counter_owner < (*bank).accounts[new_id].total_owners); // loops over all owners
    
     
 
-    //TODO ask user account type
+   
     char user_account_type;
     do{
         printf("Qual o tipo de conta pretendida(N para normal e I para insenta)?\n");
@@ -190,15 +190,16 @@ void find_account_from_nif(Bank bank){
 }
 
 
-void get_name_from_nif(Bank *bank, Client *client){
+void give_owner_name_and_nif(Bank *bank, Client *client, long user_nif){
 
     int account_number = 0;
     while(account_number < (*bank).active_accounts){
         int owner_number = 0;
         while( owner_number <  (*bank).accounts[account_number].total_owners ){ //TODO fix the counting
-            if( (*client).nif == (*bank).accounts[account_number].owner[owner_number].nif ) {
+            if( user_nif == (*bank).accounts[account_number].owner[owner_number].nif ) {
                // printf("\nEste Nif ja existe com o nome: %s\n", (*bank).accounts[account_number].owner[owner_number].name);
                 strcpy((*client).name, (*bank).accounts[account_number].owner[owner_number].name ); // copies the first name found with that nif to thew client
+                (*client).nif = user_nif;
                 return;
             }
             
@@ -215,6 +216,7 @@ void get_name_from_nif(Bank *bank, Client *client){
     }while(!verify_name(name));
     
     strcpy((*client).name, name);
+    (*client).nif = user_nif;
 }
 
 void deposit_money(Bank *bank){ // TODO function to be finished
@@ -237,16 +239,30 @@ void deposit_money(Bank *bank){ // TODO function to be finished
         return;
     }
 
-    //TODO add action cost
+  
 
     float user_money = 0;
+    int new_balance= (*bank).accounts[account].balance;
+
     do{
         printf("Quanto dinheiro vai depositar na conta? ");
         user_money = request_float(); 
         if(user_money <=0) printf("Introduza uma quantia valida de dinheiro!\n");
     }while(user_money <= 0 );
+
+
+    new_balance += (user_money*100);
+     
+    if((*bank).accounts[account].account_type == 'N') new_balance -= 500; 
+
+    if(new_balance < 0){
+        printf("O seu saldo nao pode ficar negativo!\n");
+        printf("Operacao cancelada!\n");
+        return;
+    }
+
+    (*bank).accounts[account].balance = new_balance;
     
-    (*bank).accounts[account].balance += (user_money*100);
     update_history( &(*bank).accounts[account].history, new_transaction("Deposit Money", (user_money*100) ) );
 
 
@@ -279,16 +295,30 @@ void withdraw_money(Bank *bank){ // TODO function to be finished
         return;
     }
 
-    //TODO add action cost
+    
 
     float user_money = 0;
+    int new_balance = (*bank).accounts[account].balance;
+
     do{
         printf("Quanto dinheiro vai levantar da conta? ");
         user_money = request_float(); 
-        if(user_money <=0 || user_money*100 > (*bank).accounts[account].balance ) printf("Voce nao pode levantar essa quantia!\n");
-    }while(user_money <=0 || user_money*100 > (*bank).accounts[account].balance  );
-    
-    (*bank).accounts[account].balance -= (user_money*100);
+        if(user_money <=0 ) printf("Voce nao pode levantar essa quantia!\n");
+    }while(user_money <=0 );
+
+
+    new_balance -= (user_money*100);
+     
+    if((*bank).accounts[account].account_type == 'N') new_balance -= 500; 
+
+    if(new_balance < 0){
+        printf("O seu saldo nao pode ficar negativo!\n");
+        printf("Operacao cancelada!\n");
+        return;
+    }
+
+    (*bank).accounts[account].balance = new_balance;
+
     update_history( &(*bank).accounts[account].history, new_transaction("Withdraw Money", -(user_money*100) ) );
 
     printf("Seu novo saldo e: %d,%.2d euros.\n", (*bank).accounts[account].balance/100, (*bank).accounts[account].balance%100);
@@ -333,13 +363,25 @@ void transfer_money(Bank *bank){ // TODO function to be done
     //TODO add action cost
 
     float user_money = 0;
+    int new_balance = (*bank).accounts[account_sender].balance;
+
     do{
         printf("Quanto dinheiro quer enviar? ");
         user_money = request_float(); 
-        if(user_money <=0 || user_money*100 > (*bank).accounts[account_sender].balance ) printf("Voce nao pode transferir essa quantia!\n");
-    }while(user_money <=0 || user_money*100 > (*bank).accounts[account_sender].balance  );
-    
-    (*bank).accounts[account_sender].balance -= (user_money*100);
+        if(user_money <=0 ) printf("Voce nao pode transferir essa quantia!\n");
+    }while(user_money <=0 );
+
+
+    new_balance -= (user_money*100);
+    if((*bank).accounts[account_sender].account_type == 'N') new_balance -= 500; 
+
+    if(new_balance < 0){
+        printf("O seu saldo nao pode ficar negativo!\n");
+        printf("Operacao cancelada!\n");
+        return;
+    }
+
+    (*bank).accounts[account_sender].balance = new_balance;
     (*bank).accounts[account_receiver].balance += (user_money*100);
 
     printf("Seu novo saldo e: %d,%.2d euros.\n", (*bank).accounts[account_sender].balance/100, (*bank).accounts[account_sender].balance%100);

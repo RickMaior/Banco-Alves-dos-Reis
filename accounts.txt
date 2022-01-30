@@ -4,26 +4,26 @@ name = ricardo
 Nif=123456789
 
 Tipo de conta: Normal
-Balance: 297,00 euros
+Balance: 85,00 euros
 History: 
 Transaction: 
-	Withdraw Money	Ammount: -1,00 euros
+	Withdraw Money	Ammount: -3,00 euros
 	Transaction date: 
-		day: 29
+		day: 30
 		month: 1
 		year: 2022 
 
 Transaction: 
-	Deposit Money	Ammount: 0,64 euros
+	Withdraw Money	Ammount: -8,00 euros
 	Transaction date: 
-		day: 27
+		day: 30
 		month: 1
 		year: 2022 
 
 Transaction: 
-	Deposit Money	Ammount: 0,34 euros
+	Deposit Money	Ammount: 100,00 euros
 	Transaction date: 
-		day: 27
+		day: 30
 		month: 1
 		year: 2022 
 
@@ -123,6 +123,28 @@ ID: 5
 Titulares da conta: 
 name = ricardo
 Nif=123456789
+
+Tipo de conta: Normal
+Balance: 150,00 euros
+History: 
+Transaction: 
+	Account Creation	Ammount: 150,00 euros
+	Transaction date: 
+		day: 29
+		month: 1
+		year: 2022 
+
+
+Creation date: 
+	day: 29
+	month: 1
+	year: 2022 
+
+-----------------------------
+ID: 6
+Titulares da conta: 
+name = Joao
+Nif=987654321
 
 Tipo de conta: Normal
 Balance: 150,00 euros
