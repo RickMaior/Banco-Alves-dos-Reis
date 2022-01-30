@@ -72,3 +72,72 @@ Creation date:
 	year: 2022 
 
 -----------------------------
+ID: 3
+Titulares da conta: 
+name = ricardo
+Nif=123456789
+
+name = Joao
+Nif=987654321
+
+Tipo de conta: Normal
+Balance: 150,00 euros
+History: 
+Transaction: 
+	Account Creation	Ammount: 150,00 euros
+	Transaction date: 
+		day: 29
+		month: 1
+		year: 2022 
+
+
+Creation date: 
+	day: 29
+	month: 1
+	year: 2022 
+
+-----------------------------
+ID: 4
+Titulares da conta: 
+name = Carlos
+Nif=123456788
+
+Tipo de conta: Normal
+Balance: 150,00 euros
+History: 
+Transaction: 
+	Account Creation	Ammount: 150,00 euros
+	Transaction date: 
+		day: 29
+		month: 1
+		year: 2022 
+
+
+Creation date: 
+	day: 29
+	month: 1
+	year: 2022 
+
+-----------------------------
+ID: 5
+Titulares da conta: 
+name = ricardo
+Nif=123456789
+
+Tipo de conta: Normal
+Balance: 150,00 euros
+History: 
+Transaction: 
+	Account Creation	Ammount: 150,00 euros
+	Transaction date: 
+		day: 29
+		month: 1
+		year: 2022 
+
+
+Creation date: 
+	day: 29
+	month: 1
+	year: 2022 
+
+-----------------------------

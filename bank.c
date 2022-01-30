@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
+
 #include "read.h"
 #include "client.h"
 #include "bank.h"
@@ -27,13 +29,6 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     }
 
     int new_id = (*bank).active_accounts ;
-
-    // // int id;
-    // // Client owner[5];
-    // // char account_type; // N -> normal, I -> insent
-    // // int balance; // account ballance in cents
-    // // char history[3]; 
-    // // int creation_date; // data de criação da conta
 
     //Where (*bank).accounts[new_id] is a new client
     (*bank).accounts[new_id].id = new_id + 1; // Define the new account ID
@@ -66,8 +61,17 @@ void new_account(Bank *bank){ // Creates a new client with the parameters as dat
     
 
     //TODO ask user account type
-    printf("Qual o tipo de conta pretendida?\n");
-    (*bank).accounts[new_id].account_type = 'N';
+    char user_account_type;
+    do{
+        printf("Qual o tipo de conta pretendida(N para normal e I para insenta)?\n");
+        user_account_type = getchar();
+        fflush(stdin);
+        if(user_account_type != 'n' && user_account_type != 'N'  && user_account_type != 'I' && user_account_type != 'i') printf("Introduza um tipo de conta valido!\n");
+    }while(user_account_type != 'n' && user_account_type != 'N'  && user_account_type != 'I' && user_account_type != 'i');
+    
+    //printf("Tipo de conta introduzido: %c\n", toupper(user_account_type) );
+
+    (*bank).accounts[new_id].account_type = toupper(user_account_type);
     
     float user_money;
     do{
@@ -176,10 +180,8 @@ void find_account_from_nif(Bank bank){
                 printf("\n-----------------------------\n");
                 print_account(bank.accounts[account], stdout);
                 accounts_found++;
-                
                 break;
             }
-            
         }
     }
 
